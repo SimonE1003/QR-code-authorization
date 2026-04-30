@@ -35,19 +35,20 @@ app.secret_key = 'your_secret_key'
 
 # MySQL 数据库配置
 DB_CONFIG = {
-    'host': 'localhost',  # 本地测试用localhost；云服务器填服务器IP
-    'user': 'root',       # MySQL用户名（默认root）
-    'password': 'Wym:050311',  
-    'database': 'midjourney_cert',  # 数据库名
+    'host': os.environ.get('DB_HOST', 'localhost'),
+    'user': os.environ.get('DB_USER', 'root'),
+    'password': os.environ.get('DB_PASSWORD'), 
+    'database': 'midjourney_cert',
     'port': 3306,
     'charset': 'utf8mb4'
 }
 
-#储存用户名和密码!!!
+ADMIN_USER = os.environ.get('ADMIN_USER', 'admin')
+ADMIN_PASS = os.environ.get('ADMIN_PASS')
+
 users = {
-    "user1": "password1",
-    "user2": "password2"
-}
+    ADMIN_USER: ADMIN_PASS
+} if ADMIN_PASS else {}
 
 # 确保二维码图片存储目录存在
 QR_CODE_FOLDER = 'static/qrcodes'
