@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+    <title>认证验证成功</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { 
+            font-family: "Microsoft YaHei", Arial, sans-serif;  /* 增加中文字体支持 */
+            max-width: 600px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            text-align: center;
+        }
+        
+        .success { color: #2ecc71; }  /* 更鲜艳的绿色 */
+        
+        .cert-details { 
+            background: #f9f9f9; 
+            padding: 25px; 
+            border-radius: 12px; 
+            margin-top: 25px; 
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);  /* 轻微阴影 */
+        }
+        
+        .logo { margin: 20px 0 10px; }
+        .logo img { max-width: 100px; }
+        
+        .checkmark {
+            width: 80px;  /* 打勾图标大小 */
+            height: 80px;
+            background-color: #2ecc71;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            animation: scaleIn 0.5s ease-in-out;  /* 添加动画 */
+        }
+        
+        .checkmark i {
+            color: white;
+            font-size: 40px;
+        }
+        
+        @keyframes scaleIn {
+            0% { transform: scale(0); }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .highlight {
+            font-style: italic;  /* 斜体效果 */
+            font-weight: 600;
+        }
+        
+        .verification-text {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.6;
+            margin: 10px 0 15px;
+            padding: 0 10px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">  <!-- 引入图标库 -->
+</head>
+<body>
+    <div class="logo">
+        <img src="static/logo.jpg" alt="Midjourney Logo">
+    </div>
+
+     <p class="verification-text">
+        扫描证书上的二维码，即可验证其真实性。请确保证书上的信息与此处显示的数据一致。
+    </p>
+    
+    <div class="checkmark">
+        <i class="fa fa-check"></i>  <!-- 打勾图标 -->
+    </div>
+    
+    <h1 class="success">认证验证成功!</h1>
+    
+    <div class="cert-details">
+        <p><strong>小红书ID:</strong> {{ cert.rednote_id }}</p>
+        <p><strong>账号名称:</strong> {{ cert.account_name }}</p>
+        <p><strong>认证编号:</strong> {{ cert.cert_code }}</p>
+        <p><strong>有效期:</strong> {{ cert.valid_from.strftime('%Y-%m-%d') }} 至 {{ cert.valid_to.strftime('%Y-%m-%d') }}</p>
+        <p class="success"><strong>该账号为Midjourney官方合作账号</strong></p>  
+    </div>
+    
+</body>
+</html>

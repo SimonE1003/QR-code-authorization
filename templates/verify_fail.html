@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+    <title>认证验证失败</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { 
+            font-family: "Microsoft YaHei", Arial, sans-serif; 
+            max-width: 600px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            text-align: center;
+        }
+        
+        .error { color: #e74c3c; }  /* 错误红色主题 */
+        
+        .error-details { 
+            background: #f9f9f9; 
+            padding: 25px; 
+            border-radius: 12px; 
+            margin-top: 25px; 
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        .logo { margin: 20px 0 10px; }
+        .logo img { max-width: 100px; }
+        
+        .verification-text {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.6;
+            margin: 10px 0 15px;
+            padding: 0 10px;
+        }
+        
+        .crossmark {  /* 叉叉图标（与勾勾样式对应） */
+            width: 80px;
+            height: 80px;
+            background-color: #e74c3c;  /* 红色圆形背景 */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            animation: scaleIn 0.5s ease-in-out;
+        }
+        
+        .crossmark i {
+            color: white;
+            font-size: 40px;
+        }
+        
+        @keyframes scaleIn {  /* 相同的缩放动画 */
+            0% { transform: scale(0); }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .highlight {
+            font-style: italic;
+            font-weight: 600;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="logo">
+        <img src="static/logo.jpg" alt="Midjourney Logo">
+    </div>
+    
+    <p class="verification-text">
+        请查看账户有效期，或联系客服进行具体询问。
+    </p>
+    
+    <div class="crossmark">
+        <i class="fa fa-times"></i>  <!-- 叉叉图标，与勾勾样式对应 -->
+    </div>
+    
+    <h1 class="error">认证验证失败</h1>
+    
+    <div class="error-details">
+        <p class="error" style="text-align: center; font-size: 16px;">
+            {{ message }}  <!-- 错误信息变量 -->
+        </p>
+    </div>
+    
+</body>
+</html>

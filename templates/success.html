@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+    <title>认证生成成功</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; text-align: center; }
+        h1 { color: #333; }
+        .cert-info { background: #f9f9f9; padding: 20px; border-radius: 8px; margin-bottom: 20px; text-align: left; }
+        .qr-code { margin: 20px 0; }
+        img { max-width: 300px; border: 1px solid #ddd; padding: 10px; background: white; }
+        .actions { margin-top: 20px; }
+        a { display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin: 0 10px; }
+        a:hover { background-color: #45a049; }
+        .logout-btn { margin-bottom: 20px; text-align: right; }
+    </style>
+</head>
+<body>
+    <div class="logout-btn">
+        <a href="/logout" class="btn btn-outline-danger">
+            <i class="fa fa-sign-out"></i> 登出
+        </a>
+    </div>
+    <h1>认证生成成功</h1>
+    
+    <div class="cert-info">
+        <p><strong>小红书ID:</strong> {{ rednote_id }}</p>
+        <p><strong>账号名称:</strong> {{ account_name }}</p>
+        <p><strong>认证编号:</strong> {{ cert_code }}</p>
+        <p><strong>有效期:</strong> {{ valid_from }} 至 {{ valid_to }}</p>
+    </div>
+    
+    <div class="qr-code">
+        <p>扫描下方二维码验证认证信息：</p>
+        <img src="data:image/png;base64,{{ qr_base64 }}" alt="认证二维码">
+    </div>
+    
+    <div class="actions">
+        <a href="/">返回生成页面</a>
+        <a href="data:image/png;base64,{{ qr_base64 }}" download="midjourney_cert_{{ cert_code }}.png">下载二维码</a>
+    </div>
+</body>
+</html>
